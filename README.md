@@ -13,3 +13,4 @@ https://pc2.tfcis.org/sky/index.php/problem/view/2
 # [3] String Sum
 Briefly describe on sky online judge as shown on the right:
 https://pc2.tfcis.org/sky/index.php/problem/view/3
+- reference: range-based loop http://stackoverflow.com/questions/9438209/for-every-character-in-string
