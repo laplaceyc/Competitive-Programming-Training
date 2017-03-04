@@ -1,32 +1,22 @@
-#include<iostream>
-#include<string>
-#include <cstdlib>
+#include <cstdio>
+#include <sstream>
+#include <string>
+#include <iostream>
+#include <locale>
+//#define debug
 using namespace std;
-
-int main(){
-	
-    string s;
-    while(getline(cin, s)) {
-        if(s == "") {
-            cout << '0' << endl;
-        }
-        else {
-            string buf;
-            int ans = 0;
-            for(char &c : s) {
-                if(c >= '0' && c <='9') {
-                    buf.push_back(c);
-                }
-                else if(c == ' ') {
-                    ans = ans + atoi(buf.c_str());
-                    buf.clear();
-                }
-            }
-            if(!buf.empty()) {
-                ans = ans +  atoi(buf.c_str());
-            }
-            cout << ans << endl;
-        }
-    }
-    return 0;
+int main() {
+	string s;
+	while (getline(cin, s)) {
+		int sum = 0;
+		stringstream ss(s);
+		string tmp_buf;
+		while (ss >> tmp_buf) {
+			if (isdigit(tmp_buf[0])) {
+				sum += stoi(tmp_buf);
+			}
+		}
+		printf("%d\n", sum);
+	}
+	return 0;
 }
