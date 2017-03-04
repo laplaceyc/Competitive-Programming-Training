@@ -10,3 +10,6 @@ https://pc2.tfcis.org/sky/index.php/problem/view/1
 Briefly describe on sky online judge as shown on the right:
 https://pc2.tfcis.org/sky/index.php/problem/view/2
 
+# [3] String Sum
+Briefly describe on sky online judge as shown on the right:
+https://pc2.tfcis.org/sky/index.php/problem/view/3
