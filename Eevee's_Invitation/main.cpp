@@ -1,6 +1,5 @@
 #include <cstdio>
 #include <iostream>
-#include <iomanip>
 using namespace std;
 
 void print_answer(double real_part, double imag_part) {
