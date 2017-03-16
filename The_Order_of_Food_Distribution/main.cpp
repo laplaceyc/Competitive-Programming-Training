@@ -1,46 +1,63 @@
-// ConsoleApplication4.cpp : 定義主控台應用程式的進入點。
-//
-
-#include "stdafx.h"
-#include <cstdio>
-#include <tuple>
 #include <string>
-#include <sstream>
 #include <iostream>
+#include <algorithm>
 #include <vector>
 using namespace std;
-using custom_vector = vector<tuple<string, string, int> >;
-using custom_tuple = tuple<string, string, int>;
-//enum position_order { elder = 0, nursy, kit, warrior, appentice, medicent, deputy, leader};
 
-bool cmp(const custom_tuple &a, const custom_tuple &b) {
-	if (get<1>(a) == "appentice")
+struct node{
+	string name;
+	int edge;
+	int pos_num;
+};
+
+vector<node> vt_buffer;
+
+bool cmp(const node &a, const node &b) {
+	if (a.pos_num != b.pos_num) return a.pos_num < b.pos_num;
+	else if (a.edge != b.edge){
+		if(a.pos_num == 4) return a.edge < b.edge;
+		else return a.edge > b.edge;
+	}
+	else return  a.name < b.name;
 }
 
 
 int main()
 {	
-	
-	custom_vector vt_buffer;
-	int cat_data, food_num;
-	scanf_s("%d %d", &cat_data, &food_num);
+	int cat_data;
 	//input data
-	while (cat_data--) {
-		string name, position;
-		int edge;
-		cin >> name >> position >> edge;
-		
+	while (cin >> cat_data) {
+		int food_num;
+		cin >> food_num;
+		if(food_num > cat_data) food_num = cat_data;
+		while(cat_data--){
+			node tmp;
+			string name_tmp, position;
+			int edge_tmp;
+			cin >> name_tmp >> position >> edge_tmp;
+			int pos_num_tmp;
+			if (position == "elder") pos_num_tmp = 0;  
+			else if (position == "nursy") pos_num_tmp = 1;
+			else if (position == "kit") pos_num_tmp = 2;
+			else if (position == "warrior") pos_num_tmp = 3;
+			else if (position == "appentice") pos_num_tmp = 4;
+			else if (position == "medicent") pos_num_tmp = 5;
+			else if (position == "deputy") pos_num_tmp = 6;
+			else if (position == "leader") pos_num_tmp = 7;
+			tmp.name = name_tmp;
+			tmp.edge = edge_tmp;
+			tmp.pos_num = pos_num_tmp;
+			vt_buffer.push_back(tmp);
+		}
+		sort(vt_buffer.begin(), vt_buffer.end(), cmp);
 
-		custom_tuple tmp = make_tuple(name, position, edge);
-		vt_buffer.push_back(tmp);
+		//output data
+		for (auto i = 0; i < food_num; ++i) {
+			cout << vt_buffer[i].name << '\n';
+		}
+		vt_buffer.clear();
 	}
-
-
-
-	//output data
-	for (auto i = 0; i != food_num; ++i) {
-		cout << get<0>(vt_buffer[i]) << '\n';
-	}
-	system("PAUSE");
+	
+	
 	return 0;
 }
